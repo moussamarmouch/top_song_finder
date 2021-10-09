@@ -41,6 +41,7 @@ token = resp.json()['access_token']
 frm_entry = tk.Frame(master=window, bg='#1db954',padx=100)
 frm_entry2 = tk.Frame(master=window, bg='#121212', borderwidth=2, relief="groove" )
 frm_photo = tk.Frame(master=window, bg='#121212', borderwidth=2, relief="groove" )
+
 # create input and button
 spacer1a = tk.Label(master=frm_entry, text="Enter a name:", padx=50, pady=10, bg='#1db954', fg='white', font=('Ubuntu','15', 'bold'))
 textBox = tk.Entry(master=frm_entry, borderwidth=2, relief="groove", bg='#121212', fg='white')
@@ -73,12 +74,9 @@ def get_artist_id():
     out = (json.dumps(res.json(), indent=2))
     ob = json.loads(out)
 
-    #get followers out of response
-    # followers = ob['artists']['items'][0]['followers']['total']
+    #check user input
     if len(ob['artists']['items']) >= 1:
         id = ob['artists']['items'][0]['id']
-        # spacer1b = tk.Label(master=frm_entry2, text="Success", bg='#282828', fg='white', padx=65)
-        # spacer1b.grid(row=3, column=1)
         return id, a, ob
     else:
         spacer1b = tk.Label(master=frm_entry2, text="Not Found, Try Again", bg='#282828', fg='white')
@@ -192,8 +190,6 @@ def related(a):
     ttz = requests.get(f'https://api.spotify.com/v1/artists/{a}/related-artists', headers=headers)
     ttx = (json.dumps(ttz.json(), indent=2))
     tty = json.loads(ttx)
-    names = []
-    fotos = []
     for i in range(3):
         name = tty['artists'][i]['name']
         photo = tty['artists'][i]['images'][2]['url']
