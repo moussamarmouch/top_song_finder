@@ -11,8 +11,8 @@ window.title('Top 10 Songs Finder')
 window.configure(bg='#111111')
 
 # credentials
-clientId = "bf2f20d3f7f84e13b559c2b90bab54f8"
-clientSecret = "93bf60902a894f5abf298eb6ab3bb473"
+clientId = CLIENT_ID
+clientSecret = CLIENT_SECRET
 
 # encode credentials
 message = f"{clientId}:{clientSecret}"
